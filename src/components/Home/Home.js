@@ -8,18 +8,18 @@ import Button from '@mui/material/Button';
 import './home.css'
 
 class Home extends React.Component {
+
   componentDidMount(){
     this.props.getAmiibos() 
   };
 
   render() {
-    const { amiibos, cartItems } = this.props.amiibos;
-    console.log("cart", cartItems)
+    const { amiibos } = this.props.state;
 
     const handleAmiiboClick = (item) => {
       this.props.addToCart(item)
     };
-
+    //TODO: find how to paginate this
     return (
       <div className='amiiboListContainer'>
         {amiibos?.amiibo?.map((amiibo, index) => 
@@ -34,7 +34,6 @@ class Home extends React.Component {
                 </div>
                 <Button onClick={()=>handleAmiiboClick(amiibo)}>Comprar</Button>
             </div>
-            
           </div>
         )}
       </div>
@@ -42,7 +41,7 @@ class Home extends React.Component {
   };
 };
 
-const mapStateToProps  = (state) => ({ amiibos:state.amiibos, cartItems: state.cartItems});
+const mapStateToProps  = (state) => ({ state:state.amiibos});
 
 const mapDispatchToProps= (dispatch)=> { 
   return{
