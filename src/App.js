@@ -1,12 +1,12 @@
 import { BrowserRouter } from 'react-router-dom'
 import Navbar from "./components/Navbar/Navbar";
-import Shop from './components/Shop/Shop';
+import Home from './components/Home/Home';
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar/>
-      <Shop/>
+      <Home/>
     </BrowserRouter>
   );
 };

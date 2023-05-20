@@ -1,4 +1,4 @@
-import { GET_AMIIBOS, AMIIBOS_ERROR } from '../../types'
+import { GET_AMIIBOS, AMIIBOS_ERROR, ADD_TO_CART } from '../types'
 import axios from 'axios'
 
 export const getAmiibos = () => async dispatch => {
@@ -16,3 +16,7 @@ export const getAmiibos = () => async dispatch => {
         })
     }
 };
+
+export const addToCart = (item) => {
+    return { type: ADD_TO_CART, item }
+}
