@@ -15,7 +15,6 @@ class Home extends React.Component {
 
   render() {
     const { amiibos } = this.props.state;
-
     const handleAmiiboClick = (item) => {
       this.props.addToCart(item)
     };
@@ -24,8 +23,8 @@ class Home extends React.Component {
     //TODO: modal producto
     return (
       <div className='amiiboListContainer'>
-        {amiibos?.amiibo?.map((amiibo, index) => 
-          <div className="card" key= {index }>
+        {amiibos?.map((amiibo) => 
+          <div className="card" key= { amiibo.id }>
             <div className="card-content">
                 <div className='card-image-container'>
                   <img src={amiibo.image} className='card-image'/>
@@ -33,8 +32,7 @@ class Home extends React.Component {
                 <div className='card-info-container'>
                   <div className="card-title">{amiibo.name}</div>
                   <div className="card-price">
-                    {/* PONER PRECIOS AL AZAR */}
-                    $8.900
+                    {`$ ${amiibo.price}`}
                   </div>
                   <Button onClick={()=>handleAmiiboClick(amiibo)} className='card-button'>Añadir al carrito</Button>
                 </div> 

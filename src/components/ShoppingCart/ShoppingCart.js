@@ -25,7 +25,7 @@ class ShoppingCart extends React.Component {
             // TODO: pass to  li
               <div key={index} className='shopping-cart-item-container'>
                 <img src={item.image} className='shopping-image'></img>
-                <div>
+                <div className='shopping-information'>
                   <div>{item.name}</div>
                   <div className='quantity'>
                     <RemoveIcon/>
@@ -33,7 +33,7 @@ class ShoppingCart extends React.Component {
                     <AddIcon/>
                   </div>
                 </div>
-                <div>$450</div>
+                <div>{item.price}</div>
               </div>
             )}
             <div className='shopping-total'>

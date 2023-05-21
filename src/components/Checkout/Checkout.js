@@ -17,7 +17,7 @@ class Checkout extends React.Component {
         {cartItems?.map((item, index) => 
           <div key={index} className='checkout-item-container'>
             <div>{item.name}</div>
-            <div>$450</div>
+            <div>{item.price}</div>
           </div>
         )}
         <div className='checkout-total'>
