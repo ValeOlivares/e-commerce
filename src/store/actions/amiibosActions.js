@@ -40,8 +40,8 @@ export const handleTotal = (price) => {
     return { type: HANDLE_TOTAL, price}
 };
 
-export const handleAdd = (price) => {
-    return { type: HANDLE_TOTAL, price}
+export const handleAdd = (id) => {
+    return { type: HANDLE_ADD, id}
 };
 
 export const handleRemove = (id) => {

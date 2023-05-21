@@ -30,10 +30,10 @@ class ShoppingCart extends React.Component {
                   <div className='quantity'>
                     <RemoveIcon />
                     <p>{item.qty}</p>
-                    <AddIcon onClick={()=> handleAdd(item.id)}/>
+                    <AddIcon onClick={()=> this.props.handleAdd(item.id)}/>
                   </div>
                 </div>
-                <div>{`$${item.price}`}</div>
+                <div>{`$${item.price * item.qty}`}</div>
               </li>
             )}
             </ul>
