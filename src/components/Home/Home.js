@@ -19,7 +19,9 @@ class Home extends React.Component {
     const handleAmiiboClick = (item) => {
       this.props.addToCart(item)
     };
-    //TODO: find how to paginate this
+    //TODO: paginate this
+    //TODO: Localstorage
+    //TODO: modal producto
     return (
       <div className='amiiboListContainer'>
         {amiibos?.amiibo?.map((amiibo, index) => 
@@ -28,11 +30,14 @@ class Home extends React.Component {
                 <div className='card-image-container'>
                   <img src={amiibo.image} className='card-image'/>
                 </div>
-                <div className="card-title">{amiibo.name}</div>
-                <div className="card-price">
-                  $450
-                </div>
-                <Button onClick={()=>handleAmiiboClick(amiibo)}>Comprar</Button>
+                <div className='card-info-container'>
+                  <div className="card-title">{amiibo.name}</div>
+                  <div className="card-price">
+                    {/* PONER PRECIOS AL AZAR */}
+                    $8.900
+                  </div>
+                  <Button onClick={()=>handleAmiiboClick(amiibo)} className='card-button'>Añadir al carrito</Button>
+                </div> 
             </div>
           </div>
         )}

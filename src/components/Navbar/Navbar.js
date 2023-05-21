@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { handleShoppingCart } from '../../store/actions/amiibosActions';
 
-import './Navbar.css'
+import './navbar.css'
 
 class Navbar extends React.Component {
   

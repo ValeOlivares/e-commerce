@@ -4,10 +4,12 @@
   margin: 70px;
 }
 .card{
+  flex: 1 1 250px;
   margin: 20px;
   background-color: #fff;
-  border: 1px solid black;
-  flex: 1 1 250px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.2);
 }
 
 .card-content {
@@ -15,14 +17,33 @@
 }
 
 .card-image-container{
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
-  border: 1px solid red;
 }
 
 .card-image{
   height: 80%;
+}
+
+.card-info-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card-title  {
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.card-price {
+  color: #ff3224;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
+  margin:5px 0;
 }
 

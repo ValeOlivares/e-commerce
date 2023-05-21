@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@mui/material/Button';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 
 import { handleShoppingCart } from '../../store/actions/amiibosActions';
 
@@ -10,38 +13,38 @@ class ShoppingCart extends React.Component {
   render() {
     const {  shoppingCartMenu, cartItems } = this.props.state;
     return (
-      <>
-        { shoppingCartMenu &&
-          <div className='shopping-cart-container'>
-            <div className='shopping-cart-header'>
-              <p>Carrito</p>
-              <button onClick={()=> this.props.handleShoppingCart()}>Cerrar</button>
-            </div>
-          {
-            cartItems?.length ?
-              <div>
-                <p>Tu pedido</p>
-                <div className='checkout-item-titles'>
-                  <p>Producto</p>
-                  <p>Subtotal</p>
-                </div>
-                {cartItems?.map((item, index) => 
-                  <div key={index} className='checkout-item-container'>
-                    <div>{item.name}</div>
-                    <div>$450</div>
+      <div className={ shoppingCartMenu ? 'shopping-cart-container active' : 'shopping-cart-container'}>
+        <div className='shopping-cart-header'>
+          <p>Carrito</p>
+          <Button onClick={()=> this.props.handleShoppingCart()}>Cerrar</Button>
+        </div>
+      {
+        cartItems?.length ?
+          <>
+            {cartItems?.map((item, index) => 
+            // TODO: pass to  li
+              <div key={index} className='shopping-cart-item-container'>
+                <img src={item.image} className='shopping-image'></img>
+                <div>
+                  <div>{item.name}</div>
+                  <div className='quantity'>
+                    <RemoveIcon/>
+                    <p>1</p>
+                    <AddIcon/>
                   </div>
-                )}
-                <div className='checkout-total'>
-                  <p>Total</p>
-                  <p> $3500</p>
                 </div>
-              </div> 
-            : 
-              <div>No hay items en el carrito</div>
-          }
-          </div>
-        }
-      </>
+                <div>$450</div>
+              </div>
+            )}
+            <div className='shopping-total'>
+              <p>Total</p>
+              <p> $3500</p>
+            </div>
+          </> 
+        : 
+          <div>No hay items en el carrito</div>
+      }
+      </div>
     )
   };
 };

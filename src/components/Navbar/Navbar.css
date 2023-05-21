@@ -1,8 +1,8 @@
 .navbar {
-  background: #fff;
-  height: 60px;
+  background: #ff3224;
+  color: #fff;
+  height: 45px;
   position: relative;
-  border-bottom: 1px solid black;
 }
 
 .container {
@@ -25,13 +25,14 @@
 }
 
 .nav-elements ul a {
+  color: #fff;
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
 }
 
 .nav-elements ul a.active {
-  color: #574c4c;
+  color: #fff;
   font-weight: 500;
   position: relative;
 }
