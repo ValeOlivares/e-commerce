@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action){
+    console.log("action", action)
     switch(action.type){
         case GET_AMIIBOS:
             return {
@@ -27,11 +28,13 @@ export default function(state = initialState, action){
                 shoppingCartMenu: !state.shoppingCartMenu
             };
         case HANDLE_ADD:
+            let addedItem = state.cartItems.find(item=> item.id === action.id)
+            console.log("added", addedItem)
             return {
                 ...state,
+                
             }
         case HANDLE_TOTAL: 
-            console.log("si si si")
             return {
                 ...state,
                 total: [ Number(state.total) + action.price]

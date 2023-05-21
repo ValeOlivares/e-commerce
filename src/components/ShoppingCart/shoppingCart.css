@@ -23,13 +23,17 @@
   padding: 10px;
 }
 
-.shopping-cart-item-container {
-  border-bottom: 1px solid #dedede;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
+.shopping-cart-list {
+  list-style: none;
   padding: 0 30px;
+}
+
+.shopping-cart-item-container {
+  margin-top: 15px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #dedede;
 }
 
 .shopping-image{
@@ -43,12 +47,14 @@
 }
 
 .shopping-information {
-  flex-grow: 1;
+  flex: 1 1 auto;
   padding: 0 40px;
 }
 
 .quantity {
-  display:flex;
-  justify-content: flex-start;
+  position: relative;
+  display: flex;
   align-items: center;
+  margin-bottom: 8px;
+  transition: opacity .6s ease
 }

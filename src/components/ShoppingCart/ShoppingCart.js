@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-import { handleShoppingCart } from '../../store/actions/amiibosActions';
+import { handleShoppingCart, handleAdd } from '../../store/actions/amiibosActions';
 
 import './shoppingCart.css';
 
@@ -21,21 +21,22 @@ class ShoppingCart extends React.Component {
       {
         cartItems?.length ?
           <>
+            <ul className='shopping-cart-list'>
             {cartItems?.map((item, index) => 
-            // TODO: pass to  li
-              <div key={index} className='shopping-cart-item-container'>
+              <li key={index} className='shopping-cart-item-container'>
                 <img src={item.image} className='shopping-image'></img>
                 <div className='shopping-information'>
                   <div>{item.name}</div>
                   <div className='quantity'>
-                    <RemoveIcon/>
-                    <p>1</p>
-                    <AddIcon/>
+                    <RemoveIcon />
+                    <p>{item.qty}</p>
+                    <AddIcon onClick={()=> handleAdd(item.id)}/>
                   </div>
                 </div>
                 <div>{`$${item.price}`}</div>
-              </div>
+              </li>
             )}
+            </ul>
             <div className='shopping-total'>
               <p>Total</p>
               <p> {`$${total}`}</p>
@@ -53,6 +54,7 @@ const mapStateToProps  = (state) => ({ state:state.amiibos});
 const mapDispatchToProps= (dispatch)=> { 
   return{
       handleShoppingCart: ()=> {dispatch(handleShoppingCart())},
+      handleAdd: (item) =>{dispatch(handleAdd(item))},
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

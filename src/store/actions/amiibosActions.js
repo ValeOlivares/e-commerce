@@ -28,6 +28,7 @@ export const getAmiibos = () => async dispatch => {
 };
 
 export const addToCart = (item) => {
+    item.qty = 1;
     return { type: ADD_TO_CART, item }
 };
 
@@ -35,16 +36,17 @@ export const handleShoppingCart = () => {
     return { type: HANDLE_CART }
 };
 
-export const handleAdd = (id) => {
-    return { type: HANDLE_ADD, id}
+export const handleTotal = (price) => {
+    return { type: HANDLE_TOTAL, price}
+};
+
+export const handleAdd = (price) => {
+    return { type: HANDLE_TOTAL, price}
 };
 
 export const handleRemove = (id) => {
     return { type : HANDLE_REMOVE, id }
 };
 
-export const handleTotal = (price) => {
-    return { type: HANDLE_TOTAL, price}
-}
 
 
