@@ -23,9 +23,6 @@ class Navbar extends React.Component {
                 <Link to="/">Tienda</Link>
               </li>
               <li>
-                <Link to="/checkout">Checkout</Link>
-              </li>
-              <li>
                 <ShoppingCartRoundedIcon sx={{color: "#fff"}} onClick={()=> this.props.handleShoppingCart()}/>
                 <span className='shopping-cart-count'>{cartItems?.length}</span>
               </li>

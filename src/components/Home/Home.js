@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { getAmiibos, addToCart, handleTotal } from '../../store/actions/amiibosActions';
 
 import Button from '@mui/material/Button';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
+import PageviewRoundedIcon from '@mui/icons-material/PageviewRounded';
 
 import './home.css'
 
@@ -37,7 +40,11 @@ class Home extends React.Component {
                   <div className="card-price">
                     {`$${amiibo.price}`}
                   </div>
-                  <Button onClick={()=>handleAmiiboClick(amiibo)} className='card-button'>Añadir al carrito</Button>
+                  <div className='card-action-buttons'>
+                    <FavoriteRoundedIcon className='cart-button'/>
+                    <AddShoppingCartRoundedIcon onClick={()=>handleAmiiboClick(amiibo)} className='cart-button'/>
+                    <PageviewRoundedIcon className='cart-button'/>
+                  </div>
                 </div> 
             </div>
           </div>
