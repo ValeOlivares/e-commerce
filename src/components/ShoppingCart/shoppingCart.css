@@ -1,0 +1,13 @@
+.shopping-cart-container{
+  background-color: aquamarine;
+  width: 30%;
+  position:absolute;
+  top: 0;
+  right:0;
+  height: 100%;
+}
+
+.shopping-cart-header{
+  display: flex;
+  justify-content: space-between;
+}
