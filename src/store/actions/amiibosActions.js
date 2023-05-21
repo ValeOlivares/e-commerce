@@ -5,7 +5,8 @@ import {
     ADD_TO_CART, 
     HANDLE_CART, 
     HANDLE_REMOVE, 
-    HANDLE_ADD  
+    HANDLE_ADD, 
+    HANDLE_TOTAL,
 } from '../types';
 import { getRandomPrice } from '../../utils/utils';
 
@@ -35,11 +36,15 @@ export const handleShoppingCart = () => {
 };
 
 export const handleAdd = (id) => {
-    return { type: HANDLE_ADD}
+    return { type: HANDLE_ADD, id}
 };
 
 export const handleRemove = (id) => {
-    return { type : HANDLE_REMOVE }
+    return { type : HANDLE_REMOVE, id }
 };
+
+export const handleTotal = (price) => {
+    return { type: HANDLE_TOTAL, price}
+}
 
 

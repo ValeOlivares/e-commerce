@@ -6,7 +6,7 @@ import './checkout.css'
 class Checkout extends React.Component {
 
   render() {
-    const {  cartItems } = this.props.state;
+    const {  cartItems, total } = this.props.state;
     return (
       <div className='checkout-container'>
         <p>Tu pedido</p>
@@ -17,12 +17,12 @@ class Checkout extends React.Component {
         {cartItems?.map((item, index) => 
           <div key={index} className='checkout-item-container'>
             <div>{item.name}</div>
-            <div>{item.price}</div>
+            <div>{`$${item.price}`}</div>
           </div>
         )}
         <div className='checkout-total'>
           <p>Total</p>
-          <p> $3500</p>
+          <p>{total}</p>
         </div>
       </div>
     )

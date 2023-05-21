@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAmiibos, addToCart } from '../../store/actions/amiibosActions';
+import { getAmiibos, addToCart, handleTotal } from '../../store/actions/amiibosActions';
 
 import Button from '@mui/material/Button';
 
@@ -15,9 +15,12 @@ class Home extends React.Component {
 
   render() {
     const { amiibos } = this.props.state;
+
     const handleAmiiboClick = (item) => {
-      this.props.addToCart(item)
+      this.props.addToCart(item);
+      this.props.handleTotal(item.price);
     };
+
     //TODO: paginate this
     //TODO: Localstorage
     //TODO: modal producto
@@ -32,7 +35,7 @@ class Home extends React.Component {
                 <div className='card-info-container'>
                   <div className="card-title">{amiibo.name}</div>
                   <div className="card-price">
-                    {`$ ${amiibo.price}`}
+                    {`$${amiibo.price}`}
                   </div>
                   <Button onClick={()=>handleAmiiboClick(amiibo)} className='card-button'>Añadir al carrito</Button>
                 </div> 
@@ -49,7 +52,8 @@ const mapStateToProps  = (state) => ({ state:state.amiibos});
 const mapDispatchToProps= (dispatch)=> { 
   return{
       getAmiibos: ()=> {dispatch(getAmiibos())},
-      addToCart: (id)=>{dispatch(addToCart(id))}
+      addToCart: (id)=>{dispatch(addToCart(id))},
+      handleTotal: (price) =>{dispatch(handleTotal(price))}
   }
 };
 

@@ -11,7 +11,7 @@ import './shoppingCart.css';
 class ShoppingCart extends React.Component {
 
   render() {
-    const {  shoppingCartMenu, cartItems } = this.props.state;
+    const {  shoppingCartMenu, cartItems, total } = this.props.state;
     return (
       <div className={ shoppingCartMenu ? 'shopping-cart-container active' : 'shopping-cart-container'}>
         <div className='shopping-cart-header'>
@@ -33,12 +33,12 @@ class ShoppingCart extends React.Component {
                     <AddIcon/>
                   </div>
                 </div>
-                <div>{item.price}</div>
+                <div>{`$${item.price}`}</div>
               </div>
             )}
             <div className='shopping-total'>
               <p>Total</p>
-              <p> $3500</p>
+              <p> {`$${total}`}</p>
             </div>
           </> 
         : 
