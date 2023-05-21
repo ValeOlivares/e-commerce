@@ -1,10 +1,9 @@
-import { GET_AMIIBOS, ADD_TO_CART, HANDLE_CART } from '../types'
+import { GET_AMIIBOS, ADD_TO_CART, HANDLE_CART, HANDLE_ADD } from '../types'
 
 const initialState = {
     amiibos:[],
     loading:true,
     cartItems: [],
-    total: 0,
     shoppingCartMenu: false,
 };
 
@@ -25,6 +24,10 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 shoppingCartMenu: !state.shoppingCartMenu
+            };
+        case HANDLE_ADD:
+            return {
+                ...state,
             }
         default: return state
     }
