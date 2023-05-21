@@ -1,4 +1,4 @@
-import { GET_AMIIBOS, ADD_TO_CART, HANDLE_CART, HANDLE_ADD, HANDLE_TOTAL } from '../types'
+import { GET_AMIIBOS, ADD_TO_CART, HANDLE_CART, HANDLE_ADD, HANDLE_TOTAL, HANDLE_REMOVE } from '../types'
 
 const initialState = {
     amiibos:[],
@@ -27,14 +27,24 @@ export default function(state = initialState, action){
                 shoppingCartMenu: !state.shoppingCartMenu
             };
         case HANDLE_ADD:
-            const objIndex = state.cartItems.findIndex((item => item.id == action.id));
-            const newTotal = Number(state.total) + state.cartItems[objIndex].price;
-            state.cartItems[objIndex].qty += 1;
+            const addedElementIndex = state.cartItems.findIndex((item => item.id == action.id));
+            const addedNewTotal = Number(state.total) + state.cartItems[addedElementIndex].price;
+            state.cartItems[addedElementIndex].qty += 1;
             return {
                 ...state,
                 cartItems: state.cartItems,
-                total: newTotal,
+                total: addedNewTotal,
             }
+            case HANDLE_REMOVE:
+                const removedObjIndex = state.cartItems.findIndex((item => item.id == action.id));
+                const removedNewTotal = Number(state.total) - state.cartItems[removedObjIndex].price;
+                state.cartItems[removedObjIndex].qty -= 1;
+                return {
+                    ...state,
+                    cartItems: state.cartItems,
+                    total: removedNewTotal,
+                }
+        //TODO: refactor innecasary HANDLE_TOTAL
         case HANDLE_TOTAL: 
             return {
                 ...state,
