@@ -3,7 +3,7 @@ import { GET_AMIIBOS, ADD_TO_CART, HANDLE_CART, HANDLE_ADD, HANDLE_TOTAL, HANDLE
 const initialState = {
     amiibos:[],
     loading:true,
-    cartItems: [],
+    cartItems: JSON.parse(localStorage.getItem("cartItems") || "[]"),
     shoppingCartMenu: false,
     total: 0,
 };
@@ -17,6 +17,7 @@ export default function(state = initialState, action){
                 loading:false
             };
         case ADD_TO_CART:
+            localStorage.setItem('cartItems', JSON.stringify([...state.cartItems, action.item]));
             return {
                 ...state,
                 cartItems:[...state.cartItems, action.item]
@@ -30,6 +31,7 @@ export default function(state = initialState, action){
             const addedElementIndex = state.cartItems.findIndex((item => item.id == action.id));
             const addedNewTotal = Number(state.total) + state.cartItems[addedElementIndex].price;
             state.cartItems[addedElementIndex].qty += 1;
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
             return {
                 ...state,
                 cartItems: state.cartItems,
@@ -39,6 +41,7 @@ export default function(state = initialState, action){
                 const removedObjIndex = state.cartItems.findIndex((item => item.id == action.id));
                 const removedNewTotal = Number(state.total) - state.cartItems[removedObjIndex].price;
                 state.cartItems[removedObjIndex].qty -= 1;
+                localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
                 return {
                     ...state,
                     cartItems: state.cartItems,
