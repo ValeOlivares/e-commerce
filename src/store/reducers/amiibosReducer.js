@@ -1,11 +1,12 @@
 import { GET_AMIIBOS, ADD_TO_CART, HANDLE_CART, HANDLE_ADD, HANDLE_TOTAL, HANDLE_REMOVE } from '../types'
+import { loadCartItems, loadTotal} from '../../utils/localStorage';
 
 const initialState = {
     amiibos:[],
     loading:true,
-    cartItems: JSON.parse(localStorage.getItem("cartItems") || "[]"),
+    cartItems: loadCartItems() || [],
     shoppingCartMenu: false,
-    total: 0,
+    total: loadTotal() || 0,
 };
 
 export default function(state = initialState, action){
@@ -32,6 +33,7 @@ export default function(state = initialState, action){
             const addedNewTotal = Number(state.total) + state.cartItems[addedElementIndex].price;
             state.cartItems[addedElementIndex].qty += 1;
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+            localStorage.setItem('total', JSON.stringify(addedNewTotal))
             return {
                 ...state,
                 cartItems: state.cartItems,
@@ -42,13 +44,15 @@ export default function(state = initialState, action){
                 const removedNewTotal = Number(state.total) - state.cartItems[removedObjIndex].price;
                 state.cartItems[removedObjIndex].qty -= 1;
                 localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+                localStorage.setItem('total', JSON.stringify(removedNewTotal));
                 return {
                     ...state,
                     cartItems: state.cartItems,
                     total: removedNewTotal,
                 }
         //TODO: refactor innecasary HANDLE_TOTAL
-        case HANDLE_TOTAL: 
+        case HANDLE_TOTAL:
+            localStorage.setItem('total', Number(state.total)+ action.price);
             return {
                 ...state,
                 total: [ Number(state.total) + action.price]
