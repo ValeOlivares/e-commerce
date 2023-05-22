@@ -13,6 +13,13 @@ class ShoppingCart extends React.Component {
 
   render() {
     const {  shoppingCartMenu, cartItems, total } = this.props.state;
+
+    const handleRemoveItem = (item) => {
+      if(item.qty < 1){
+        console.log("no se puede remover")
+      };
+    };
+
     return (
       <div className={ shoppingCartMenu ? 'shopping-cart-container active' : 'shopping-cart-container'}>
         <div className='shopping-cart-header'>
@@ -29,7 +36,7 @@ class ShoppingCart extends React.Component {
                 <div className='shopping-information'>
                   <div>{item.name}</div>
                   <div className='quantity'>
-                    <RemoveCircleIcon sx={{color: "#ff3224"}} onClick={()=> this.props.handleRemove(item.id)}/>
+                    <RemoveCircleIcon sx={{color: "#ff3224"}} onClick={()=> handleRemoveItem(item)}/>
                     <p>{item.qty}</p>
                     <AddCircleIcon sx={{color: "#ff3224"}} onClick={()=> this.props.handleAdd(item.id)}/>
                   </div>
@@ -44,7 +51,7 @@ class ShoppingCart extends React.Component {
                 <p> {`$${total}`}</p>
               </div>
                 <Link to="/checkout">
-                  <Button onClick={()=> this.props.handleShoppingCart()} >Finalizar compra</Button>
+                  <Button className='button' onClick={()=> this.props.handleShoppingCart()} >Finalizar compra</Button>
                 </Link>
             </div>
           </> 

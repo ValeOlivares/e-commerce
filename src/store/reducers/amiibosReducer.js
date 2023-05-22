@@ -18,10 +18,19 @@ export default function(state = initialState, action){
                 loading:false
             };
         case ADD_TO_CART:
-            localStorage.setItem('cartItems', JSON.stringify([...state.cartItems, action.item]));
-            return {
-                ...state,
-                cartItems:[...state.cartItems, action.item]
+            const existedItem = state.cartItems.find((item => item.id == action.item.id));
+            if(existedItem){
+                return {
+                    ...state,
+                    cartItems: state.cartItems,
+                    total: addedNewTotal,
+                }
+            } else {
+                localStorage.setItem('cartItems', JSON.stringify([...state.cartItems, action.item]));
+                return {
+                    ...state,
+                    cartItems:[...state.cartItems, action.item]
+                };
             };
         case HANDLE_CART:
             return {
@@ -39,18 +48,17 @@ export default function(state = initialState, action){
                 cartItems: state.cartItems,
                 total: addedNewTotal,
             }
-            case HANDLE_REMOVE:
-                const removedObjIndex = state.cartItems.findIndex((item => item.id == action.id));
-                const removedNewTotal = Number(state.total) - state.cartItems[removedObjIndex].price;
-                state.cartItems[removedObjIndex].qty -= 1;
-                localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-                localStorage.setItem('total', JSON.stringify(removedNewTotal));
-                return {
-                    ...state,
-                    cartItems: state.cartItems,
-                    total: removedNewTotal,
-                }
-        //TODO: refactor innecasary HANDLE_TOTAL
+        case HANDLE_REMOVE:
+            const removedObjIndex = state.cartItems.findIndex((item => item.id == action.id));
+            const removedNewTotal = Number(state.total) - state.cartItems[removedObjIndex].price;
+            state.cartItems[removedObjIndex].qty -= 1;
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+            localStorage.setItem('total', JSON.stringify(removedNewTotal));
+            return {
+                ...state,
+                cartItems: state.cartItems,
+                total: removedNewTotal,
+            }
         case HANDLE_TOTAL:
             localStorage.setItem('total', Number(state.total)+ action.price);
             return {
