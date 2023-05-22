@@ -1,16 +1,21 @@
 # E-commerce app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+E-Commerce web app based React
 
-## Features
+## Run Locally
 
-- **React**
-- **REdux**
+### 1. Clone repo
 
-### `npm start`
+```
+$ git clone git@github.com:ValeOlivares/e-commerce.git
+$ cd e-commerce
+```
 
-Runs the app in the development mode.\
+### 2. Run locally
+
+```
+$ npm install
+$ npm start
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
